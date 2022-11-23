@@ -7,11 +7,7 @@ jobs:
     steps:
       - checkout
       - run:
-          command: echo "attach workspace"
-      - persist_to_workspace:
-          root: /
-          paths:
-            - "/src/index"
+          command: npm i
       - run:
           name: "Build"
           command: npm run lint 
@@ -21,8 +17,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - attach_workspace:
-          at: /
+      - run:
+          command: npm i     
       - run:
           name: "Test"
           command: npm run test
@@ -32,8 +28,8 @@ jobs:
       - image: circleci/node:13.8.0
     steps:
       - checkout
-      - attach_workspace:
-          at: /
+      - run:
+          command: npm i
       - run:
           name: "Test"
           command: npm audit
